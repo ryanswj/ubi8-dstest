@@ -5,7 +5,6 @@ LABEL version="8.0"
 LABEL com.redhat.license_terms="https://www.redhat.com/licenses/eulas"
 LABEL dcar_status="notapproved"
 
-
 COPY dsop-fix*.sh /
 
 RUN chmod +x /dsop-fix*.sh && for i in $(ls /dsop-fix*.sh); do sh ${i}; done && rm -rf /dsop-fix*.sh
