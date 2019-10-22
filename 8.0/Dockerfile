@@ -3,7 +3,7 @@ FROM registry.access.redhat.com/ubi8/ubi:8.0
 LABEL name="ubi8"
 LABEL version="8.0"
 LABEL com.redhat.license_terms="https://www.redhat.com/licenses/eulas"
-LABEL dcar_status="notapproved"
+LABEL dcar_status="approved"
 
 COPY dsop-fix*.sh /
 
