@@ -8,8 +8,8 @@ COPY dsop-fix*.sh /
 
 RUN rm /etc/yum.repos.d/ubi.repo && \
     chmod +x /dsop-fix-{1,2}.sh && for i in $(ls /dsop-fix-{1,2}.sh); do sh ${i}; done && \
-    yum repolist --disablerepo=* --enablerepo=*ubi-8* && \
-    yum update -y --disablerepo=* --enablerepo=*ubi-8* && \
+    yum repolist --disablerepo="*" --enablerepo="*ubi-8*" && \
+    yum update -y --disablerepo="*" --enablerepo="*ubi-8*" && \
     yum clean all && \
     chmod +x /dsop-fix-3.sh && for i in $(ls /dsop-fix-3.sh); do sh ${i}; done && rm -rf /dsop-fix*.sh && \
     rm -rf /var/cache/yum/ /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
