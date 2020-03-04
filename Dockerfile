@@ -12,10 +12,8 @@ RUN rm /etc/yum.repos.d/ubi.repo && \
     yum update -y --disablerepo=* --enablerepo=*ubi-8* && \
     yum clean all && \
     rm -rf /var/cache/yum/ /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???* && \
-    chmod +x /dsop-fix-3.sh && for i in $(ls /dsop-fix-3.sh); do sh ${i}; done && rm -rf /dsop-fix*.sh
-RUN chmod +x /dsop-fix*.sh && for i in $(ls /dsop-fix*.sh); do sh ${i}; done && rm -rf /dsop-fix*.sh
-RUN yum update -y && rm -rf /var/cache/yum/ /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
-
+    chmod +x /dsop-fix-3.sh && for i in $(ls /dsop-fix-3.sh); do sh ${i}; done && rm -rf /dsop-fix*.sh && \
+    yum update -y && rm -rf /var/cache/yum/ /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
 
 ENV container oci
 ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
