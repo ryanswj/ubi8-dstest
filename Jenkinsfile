@@ -1,2 +1,2 @@
-@Library('DCCSCR@allow-base-creation') _
-dccscrPipeline()
+@Library('DCCSCR@master') _
+dccscrPipeline( version: "8.1" )

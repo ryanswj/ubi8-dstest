@@ -1,4 +1,5 @@
-FROM registry.access.redhat.com/ubi8/ubi:8.1
+# use image from download.json
+FROM ubi8:oss8.1
 
 LABEL name="ubi8"
 LABEL version="8.1"
