@@ -1,4 +1,4 @@
-(>&2 echo "Remediating rule 18/24: 'xccdf_org.ssgproject.content_rule_accounts_password_pam_lcredit'")
+(>&2 echo "Remediating: 'xccdf_org.ssgproject.content_rule_accounts_password_pam_lcredit'")
 
 var_password_pam_lcredit="-1"
 # Function to replace configuration setting in config file or add the configuration setting if
@@ -55,7 +55,7 @@ function replace_or_append {
   # Test that the cce arg is not empty or does not equal @CCENUM@.
   # If @CCENUM@ exists, it means that there is no CCE assigned.
   if [ -n "$cce" ] && [ "$cce" != '@CCENUM@' ]; then
-    cce="CCE-${cce}"
+    cce="${cce}"
   else
     cce="CCE"
   fi
@@ -78,5 +78,4 @@ function replace_or_append {
     printf '%s\n' "$formatted_output" >> "$config_file"
   fi
 }
-
-replace_or_append '/etc/security/pwquality.conf' '^lcredit' $var_password_pam_lcredit 'CCE-27345-8' '%s = %s'
+replace_or_append '/etc/security/pwquality.conf' '^lcredit' $var_password_pam_lcredit 'CCE-80655-4' '%s = %s'

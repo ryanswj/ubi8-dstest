@@ -5,15 +5,14 @@ LABEL name="ubi8"
 LABEL version="8.1"
 LABEL com.redhat.license_terms="https://www.redhat.com/licenses/eulas"
 
-COPY dsop-fix*.sh /
+COPY dsop-fix /dsop-fix/
 
 RUN rm /etc/yum.repos.d/ubi.repo && \
-    chmod +x /dsop-fix-{1,2}.sh && for i in $(ls /dsop-fix-{1,2}.sh); do sh ${i}; done && \
-    yum repolist --disablerepo="*" --enablerepo="*ubi-8*" && \
-    yum update -y --disablerepo="*" --enablerepo="*ubi-8*" && \
+    yum repolist && \
+    yum update -y && \
+    for f in /dsop-fix/*.sh ; do sh "$f"; done && \
     yum clean all && \
-    chmod +x /dsop-fix-3.sh && for i in $(ls /dsop-fix-3.sh); do sh ${i}; done && rm -rf /dsop-fix*.sh && \
-    rm -rf /var/cache/yum/ /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
+    rm -rf /dsop-fix/ /var/cache/yum/ /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
 
 ENV container oci
 ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin

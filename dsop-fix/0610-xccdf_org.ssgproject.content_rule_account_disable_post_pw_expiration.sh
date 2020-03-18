@@ -1,6 +1,6 @@
 (>&2 echo "Remediating: 'xccdf_org.ssgproject.content_rule_account_disable_post_pw_expiration'")
 
-var_account_disable_post_pw_expiration="0"
+var_account_disable_post_pw_expiration="35"
 # Function to replace configuration setting in config file or add the configuration setting if
 # it does not exist.
 #
@@ -55,7 +55,7 @@ function replace_or_append {
   # Test that the cce arg is not empty or does not equal @CCENUM@.
   # If @CCENUM@ exists, it means that there is no CCE assigned.
   if [ -n "$cce" ] && [ "$cce" != '@CCENUM@' ]; then
-    cce="CCE-${cce}"
+    cce="${cce}"
   else
     cce="CCE"
   fi
@@ -78,5 +78,4 @@ function replace_or_append {
     printf '%s\n' "$formatted_output" >> "$config_file"
   fi
 }
-
-replace_or_append '/etc/default/useradd' '^INACTIVE' "$var_account_disable_post_pw_expiration" 'CCE-27355-7' '%s=%s'
+replace_or_append '/etc/default/useradd' '^INACTIVE' "$var_account_disable_post_pw_expiration" 'CCE-80954-1' '%s=%s'

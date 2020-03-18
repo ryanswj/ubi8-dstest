@@ -1,4 +1,4 @@
-(>&2 echo "Remediating rule 8/24: 'xccdf_org.ssgproject.content_rule_accounts_password_pam_unix_remember'")
+(>&2 echo "Remediating: 'xccdf_org.ssgproject.content_rule_accounts_password_pam_unix_remember'")
 
 var_password_pam_unix_remember="5"
 

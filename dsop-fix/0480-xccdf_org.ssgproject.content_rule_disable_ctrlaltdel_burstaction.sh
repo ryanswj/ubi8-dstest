@@ -1,8 +1,4 @@
-(>&2 echo "Remediating: 'xccdf_org.ssgproject.content_rule_accounts_logon_fail_delay'")
-
-
-# Set variables
-var_accounts_fail_delay="4"
+(>&2 echo "Remediating: 'xccdf_org.ssgproject.content_rule_disable_ctrlaltdel_burstaction'")
 # Function to replace configuration setting in config file or add the configuration setting if
 # it does not exist.
 #
@@ -57,7 +53,7 @@ function replace_or_append {
   # Test that the cce arg is not empty or does not equal @CCENUM@.
   # If @CCENUM@ exists, it means that there is no CCE assigned.
   if [ -n "$cce" ] && [ "$cce" != '@CCENUM@' ]; then
-    cce="CCE-${cce}"
+    cce="${cce}"
   else
     cce="CCE"
   fi
@@ -80,5 +76,4 @@ function replace_or_append {
     printf '%s\n' "$formatted_output" >> "$config_file"
   fi
 }
-
-replace_or_append '/etc/login.defs' '^FAIL_DELAY' "$var_accounts_fail_delay" 'CCE-80352-8' '%s %s'
+replace_or_append '/etc/systemd/system.conf' '^CtrlAltDelBurstAction=' 'none' 'CCE-80784-2' '%s=%s'
