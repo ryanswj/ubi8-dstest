@@ -1,0 +1,17 @@
+[ubi-8-baseos]
+name=Red Hat Universal Base Image 8 (RPMs) - BaseOS
+baseurl=http://ip-10-50-5-131.us-gov-west-1.compute.internal/pulp/repos/org1/Library/custom/ubi_product/ubi-8-baseos/ 
+enabled=1
+gpgcheck=1
+
+[ubi-8-appstream]
+name=Red Hat Universal Base Image 8 (RPMs) - AppStream
+baseurl=http://ip-10-50-5-131.us-gov-west-1.compute.internal/pulp/repos/org1/Library/custom/ubi_product/ubi-8-appstream/
+enabled=1
+gpgcheck=1
+
+[ubi-8-codeready-builder]
+name=Red Hat Universal Base Image 8 (RPMs) - CodeReady Builder
+baseurl=http://ip-10-50-5-131.us-gov-west-1.compute.internal/pulp/repos/org1/Library/custom/ubi_product/ubi-8-codeready-builder/
+enabled=1
+gpgcheck=1
