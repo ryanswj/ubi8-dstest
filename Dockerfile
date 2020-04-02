@@ -7,7 +7,7 @@ LABEL com.redhat.license_terms="https://www.redhat.com/licenses/eulas"
 
 COPY dsop-fix /dsop-fix/
 
-COPY ironbank.repo /etc/yum.repos.d/ironbank.repo
+COPY ubi.repo /etc/yum.repos.d/ubi.repo
 
 # Be careful when adding packages because this will ultimately be built on a licensed RHEL host,
 # which enables full RHEL repositories and could allow for installation of packages that would
