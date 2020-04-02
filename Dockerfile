@@ -17,8 +17,9 @@ COPY ironbank.repo /etc/yum.repos.d/ironbank.repo
 RUN echo Update packages and install DISA STIG fixes && \
     # Disable all repositories (to limit RHEL host repositories) and only use official UBI repositories
     sed -i "s/enabled=1/enabled=0/" /etc/dnf/plugins/subscription-manager.conf && \
-    dnf repolist --disablerepo='*' --enablerepo=ubi-8-appstream-ib,ubi-8-baseos-ib,ubi-8-codeready-builder-ib && \
-    dnf update -y --disablerepo='*' --enablerepo=ubi-8-appstream-ib,ubi-8-baseos-ib,ubi-8-codeready-builder-ib && \
+    rm -f /etc/yum.repos.d/ubi.repo && \
+    dnf repolist && \
+    dnf update -y && \
     # Do not use loops to iterate through shell scripts, this allows for scripts to fail
     # but the build to still be successful. Be explicit when executing scripts and ensure
     # that all scripts have "set -e" at the top of the bash file!
