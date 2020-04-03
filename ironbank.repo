@@ -4,6 +4,7 @@ baseurl = http://satellite/pulp/repos/org1/Library/custom/ubi_product/ubi-8-base
 enabled = 1
 gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 gpgcheck = 1
+timeout = 5
 
 [ubi-8-baseos-debug]
 name = Red Hat Universal Base Image 8 (Debug RPMs) - BaseOS
@@ -25,6 +26,7 @@ baseurl = http://satellite/pulp/repos/org1/Library/custom/ubi_product/ubi-8-apps
 enabled = 1
 gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 gpgcheck = 1
+timeout = 5
 
 [ubi-8-appstream-debug]
 name = Red Hat Universal Base Image 8 (Debug RPMs) - AppStream
@@ -46,6 +48,7 @@ baseurl = http://satellite/pulp/repos/org1/Library/custom/ubi_product/ubi-8-code
 enabled = 1
 gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
 gpgcheck = 1
+timeout = 5
 
 [ubi-8-codeready-builder-debug]
 name = Red Hat Universal Base Image 8 (Debug RPMs) - CodeReady Builder
