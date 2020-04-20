@@ -1,0 +1,7 @@
+{ "resources":
+	[
+		{ "url" : "docker://registry.access.redhat.com/ubi8:8.1",
+			"tag": "ubi8:oss8.1",
+			"tls_verify": true
+		}
+] }
