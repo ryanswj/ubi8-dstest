@@ -1,11 +1,15 @@
-# use image from download.json
-FROM ubi8:oss8.1
+# Utilize the image from download.yaml
+# This is because we need to download the latest image from RedHat. Current
+# implementation for doing ARG based FROM instructions require replacing
+# the FROM with an already existing image (i.e. one we've previously built).
+# This prevents us from retrieving the latest image from RedHat.
+FROM ubi/ubi8:8.2
 
 LABEL name="ubi8"
-LABEL version="8.1"
+LABEL version="8.2"
 LABEL com.redhat.license_terms="https://www.redhat.com/licenses/eulas"
 
-COPY dsop-fix /dsop-fix/
+COPY scripts /dsop-fix/
 
 COPY ironbank.repo /etc/yum.repos.d/ironbank.repo
 
