@@ -1,12 +1,12 @@
 # Utilize the image from download.yaml
-# This is because we need to download the latest image from RedHat. Current
+# This is because we need to download the latest image from Red Hat. Current
 # implementation for doing ARG based FROM instructions require replacing
 # the FROM with an already existing image (i.e. one we've previously built).
-# This prevents us from retrieving the latest image from RedHat.
-FROM ubi/ubi8:8.2
+# This prevents us from retrieving the latest image from Red Hat.
+FROM ubi/ubi8:8.3
 
 LABEL name="ubi8"
-LABEL version="8.2"
+LABEL version="8.3"
 LABEL com.redhat.license_terms="https://www.redhat.com/licenses/eulas"
 
 COPY scripts /dsop-fix/
@@ -17,7 +17,7 @@ COPY banner/issue /etc/
 
 # Be careful when adding packages because this will ultimately be built on a licensed RHEL host,
 # which enables full RHEL repositories and could allow for installation of packages that would
-# violate RedHat license agreement when running the container on a non-RHEL licensed host.
+# violate Red Hat license agreement when running the container on a non-RHEL licensed host.
 # See the following link for more details:
 # https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/building_running_and_managing_containers/index/#add_software_to_a_running_ubi_container
 RUN echo Update packages and install DISA STIG fixes && \
