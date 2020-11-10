@@ -3,10 +3,10 @@
 # implementation for doing ARG based FROM instructions require replacing
 # the FROM with an already existing image (i.e. one we've previously built).
 # This prevents us from retrieving the latest image from Red Hat.
-FROM ubi/ubi8:8.2
+FROM ubi/ubi8:8.3
 
 LABEL name="ubi8"
-LABEL version="8.2"
+LABEL version="8.3"
 LABEL com.redhat.license_terms="https://www.redhat.com/licenses/eulas"
 
 COPY scripts /dsop-fix/
