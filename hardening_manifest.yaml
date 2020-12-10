@@ -24,7 +24,7 @@ labels:
   ## License(s) under which contained software is distributed
   org.opencontainers.image.licenses: "Red Hat Universal Base Image EULA"
   ## URL to find more information on the image
-  org.opencontainers.image.url: "registry.access.redhat.com/ubi8/ubi:8.3"
+  org.opencontainers.image.url: "https://catalog.redhat.com/software/container-stacks/detail/5ec53f50ef29fd35586d9a56"
   ## Name of the distributing entity, organization or individual
   org.opencontainers.image.vendor: "Redhat"
   org.opencontainers.image.version: "8.3"
@@ -33,7 +33,7 @@ labels:
   ## This value can be "opensource" or "commercial"
   mil.dso.ironbank.image.type: "commercial"
   ## Product the image belongs to for grouping multiple images
-  # mil.dso.ironbank.product.name: "FIXME"
+  mil.dso.ironbank.product.name: "UBI8"
 
 
 # List of resources to make available to the offline build context
