@@ -18,22 +18,23 @@ args:
 
 # Docker image labels
 labels:
-  org.opencontainers.image.title: "ubi8"
+  org.opencontainers.image.title: "ubi8-minimal"
   ## Human-readable description of the software packaged in the image
-  # org.opencontainers.image.description: "FIXME"
+  org.opencontainers.image.description: "Red Hat Universal Base Images (UBI) are OCI-compliant container base operating system images with complementary runtime languages and packages that are freely redistributable."
   ## License(s) under which contained software is distributed
-  # org.opencontainers.image.licenses: "FIXME"
+  org.opencontainers.image.licenses: "Red Hat Universal Base Image EULA"
   ## URL to find more information on the image
-  # org.opencontainers.image.url: "FIXME"
+  org.opencontainers.image.url: "registry.access.redhat.com/ubi8/ubi:8.3"
   ## Name of the distributing entity, organization or individual
-  # org.opencontainers.image.vendor: "FIXME"
+  org.opencontainers.image.vendor: "Redhat"
   org.opencontainers.image.version: "8.3"
   ## Keywords to help with search (ex. "cicd,gitops,golang")
   # mil.dso.ironbank.image.keywords: "FIXME"
   ## This value can be "opensource" or "commercial"
-  # mil.dso.ironbank.image.type: "FIXME"
+  mil.dso.ironbank.image.type: "commercial"
   ## Product the image belongs to for grouping multiple images
   # mil.dso.ironbank.product.name: "FIXME"
+
 
 # List of resources to make available to the offline build context
 resources:
@@ -44,12 +45,13 @@ resources:
 # FIXME: Fill in the following details for the current container owner in the whitelist
 # FIXME: Include any other vendor information if applicable
 maintainers:
-- email: "josheason@seed-innovations.com"
+- email: "duboyd@redhat.com"
 #   # The name of the current container owner
-#   name: "FIXME"
+  name: "Dustin Boyd"
 #   # The gitlab username of the current container owner
-#   username: "FIXME"
+  username: "duboyd"
 #   cht_member: true # FIXME: Uncomment if the maintainer is a member of CHT
-# - name: "FIXME"
-#   username: "FIXME"
-#   email: "FIXME"
+- name: "Joshua Eason"
+  username: "jeason"
+  email: "josheason@seed-innovations.com"
+
