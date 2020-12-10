@@ -1,3 +1,0 @@
-resources:
-  - url: "docker://registry.access.redhat.com/ubi8/ubi:8.3"
-    tag: "ubi/ubi8:8.3"
