@@ -18,7 +18,7 @@ args:
 
 # Docker image labels
 labels:
-  org.opencontainers.image.title: "ubi8-minimal"
+  org.opencontainers.image.title: "ubi8"
   ## Human-readable description of the software packaged in the image
   org.opencontainers.image.description: "Red Hat Universal Base Images (UBI) are OCI-compliant container base operating system images with complementary runtime languages and packages that are freely redistributable."
   ## License(s) under which contained software is distributed
