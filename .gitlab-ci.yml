@@ -1,0 +1,8 @@
+include:
+  - project: 'ironbank-tools/ironbank-pipeline'
+    file: '/templates/default.yaml'
+    ref: 'development'
+
+variables:
+  YAML_LINT_DISABLED: "true"
+  DOCKERFILE_LINT_DISABLED: "true"
