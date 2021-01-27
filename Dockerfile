@@ -30,7 +30,6 @@ RUN echo Update packages and install DISA STIG fixes && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_openssl_use_strong_entropy.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_configure_kerberos_crypto_policy.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_configure_openssl_crypto_policy.sh && \
-    /dsop-fix/xccdf_org.ssgproject.content_rule_package_sudo_installed.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_ensure_gpgcheck_local_packages.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_disable_ctrlaltdel_burstaction.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_accounts_password_minlen_login_defs.sh && \
