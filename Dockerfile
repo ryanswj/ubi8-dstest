@@ -51,6 +51,10 @@ RUN echo Update packages and install DISA STIG fixes && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_accounts_password_pam_unix_remember.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_accounts_passwords_pam_faillock_deny.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_accounts_passwords_pam_faillock_interval.sh && \
+    /dsop-fix/xccdf_org.ssgproject.content_rule_accounts_passwords_pam_faillock_enforce_local.sh && \
+    /dsop-fix/xccdf_org.ssgproject.content_rule_accounts_password_pam_enforce_root.sh && \
+    /dsop-fix/xccdf_org.ssgproject.content_rule_accounts_password_pam_enforce_local.sh && \
+    /dsop-fix/xccdf_org.ssgproject.content_rule_use_pam_wheel_for_su.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_package_iptables_installed.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_coredump_disable_storage.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_coredump_disable_backtraces.sh && \

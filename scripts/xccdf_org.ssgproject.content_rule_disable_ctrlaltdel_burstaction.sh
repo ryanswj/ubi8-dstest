@@ -1,23 +1,25 @@
-#!/bin/sh
-set -e
+#!/bin/bash
 
-(>&2 echo "Remediating: 'xccdf_org.ssgproject.content_rule_disable_ctrlaltdel_burstaction'")
+(>&2 echo "Remediating rule 67/227: 'xccdf_org.ssgproject.content_rule_disable_ctrlaltdel_burstaction'")
+# Remediation is applicable only in certain platforms
+if rpm --quiet -q systemd; then
+
 # Function to replace configuration setting in config file or add the configuration setting if
 # it does not exist.
 #
 # Expects arguments:
 #
-# config_file:		Configuration file that will be modified
-# key:			Configuration option to change
-# value:		Value of the configuration option to change
-# cce:			The CCE identifier or '@CCENUM@' if no CCE identifier exists
-# format:		The printf-like format string that will be given stripped key and value as arguments,
-#			so e.g. '%s=%s' will result in key=value subsitution (i.e. without spaces around =)
+# config_file:          Configuration file that will be modified
+# key:                  Configuration option to change
+# value:                Value of the configuration option to change
+# cce:                  The CCE identifier or '@CCENUM@' if no CCE identifier exists
+# format:               The printf-like format string that will be given stripped key and value as arguments,
+#                       so e.g. '%s=%s' will result in key=value subsitution (i.e. without spaces around =)
 #
 # Optional arugments:
 #
-# format:		Optional argument to specify the format of how key/value should be
-# 			modified/appended in the configuration file. The default is key = value.
+# format:               Optional argument to specify the format of how key/value should be
+#                       modified/appended in the configuration file. The default is key = value.
 #
 # Example Call(s):
 #
@@ -80,3 +82,8 @@ function replace_or_append {
   fi
 }
 replace_or_append '/etc/systemd/system.conf' '^CtrlAltDelBurstAction=' 'none' 'CCE-80784-2' '%s=%s'
+
+else
+    >&2 echo 'Remediation is not applicable, nothing was done'
+fi
+
