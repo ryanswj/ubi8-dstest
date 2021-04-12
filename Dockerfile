@@ -7,7 +7,7 @@ FROM ubi/ubi8:8.3
 
 COPY scripts /dsop-fix/
 
-COPY certs/Certificates_PKCS7_v5.7_DoD.pem /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.7_DoD.pem
+COPY certs/Certificates_PKCS7_v5.7_DoD.pem /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.7_DoD.pem.tmp
 
 COPY ironbank.repo /etc/yum.repos.d/ironbank.repo
 
@@ -60,6 +60,7 @@ RUN echo Update packages and install DISA STIG fixes && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_coredump_disable_storage.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_coredump_disable_backtraces.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_disable_users_coredumps.sh && \
+    mv /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.7_DoD.pem.tmp /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.7_DoD.pem && \
     update-ca-trust && \
     update-ca-trust force-enable && \
     grep -c "BEGIN CERTIFICATE" /etc/pki/tls/certs/ca-bundle.crt && \
