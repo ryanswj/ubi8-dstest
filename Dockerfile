@@ -3,13 +3,11 @@
 # implementation for doing ARG based FROM instructions require replacing
 # the FROM with an already existing image (i.e. one we've previously built).
 # This prevents us from retrieving the latest image from Red Hat.
-# FROM ubi/ubi8:8.3
-
-FROM registry.access.redhat.com/ubi8/ubi:8.3
+FROM ubi/ubi8:8.3
 
 COPY scripts /dsop-fix/
 
-COPY certs/Certificates_PKCS7_v5.7_DoD.pem.tmp /etc/pki/ca-trust/source/anchors/
+COPY certs/Certificates_PKCS7_v5.7_DoD.pem /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.7_DoD.pem
 
 COPY ironbank.repo /etc/yum.repos.d/ironbank.repo
 
@@ -62,11 +60,10 @@ RUN echo Update packages and install DISA STIG fixes && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_coredump_disable_storage.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_coredump_disable_backtraces.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_disable_users_coredumps.sh && \
-    mv /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.7_DoD.pem.tmp /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.7_DoD.pem && \
     update-ca-trust && \
     update-ca-trust force-enable && \
     grep -c "BEGIN CERTIFICATE" /etc/pki/tls/certs/ca-bundle.crt && \
-    trust list | grep label | head && \
+    trust list | head && \
     dnf clean all && \
     rm -rf /dsop-fix/ /var/cache/dnf/ /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
 
