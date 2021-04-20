@@ -24,6 +24,8 @@ RUN echo Update packages and install DISA STIG fixes && \
     rm -f /etc/yum.repos.d/ubi.repo && \
     dnf repolist && \
     dnf update -y && \
+    # install missing dependency for libpwquality
+    dnf install -y cracklib-dicts && \
     # Do not use loops to iterate through shell scripts, this allows for scripts to fail
     # but the build to still be successful. Be explicit when executing scripts and ensure
     # that all scripts have "set -e" at the top of the bash file!
