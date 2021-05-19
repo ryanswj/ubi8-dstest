@@ -3,7 +3,7 @@
 # implementation for doing ARG based FROM instructions require replacing
 # the FROM with an already existing image (i.e. one we've previously built).
 # This prevents us from retrieving the latest image from Red Hat.
-FROM ubi/ubi8:8.3
+FROM registry.access.redhat.com/ubi8:8.4
 
 COPY scripts /dsop-fix/
 
@@ -21,6 +21,7 @@ COPY banner/issue /etc/
 RUN echo Update packages and install DISA STIG fixes && \
     # Disable all repositories (to limit RHEL host repositories) and only use official UBI repositories
     sed -i "s/enabled=1/enabled=0/" /etc/dnf/plugins/subscription-manager.conf && \
+    chmod 644 /etc/issue /etc/yum.repos.d/ironbank.repo && \
     rm -f /etc/yum.repos.d/ubi.repo && \
     dnf repolist && \
     dnf update -y && \
