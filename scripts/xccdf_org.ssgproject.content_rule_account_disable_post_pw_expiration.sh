@@ -3,6 +3,10 @@ set -e
 
 (>&2 echo "Remediating: 'xccdf_org.ssgproject.content_rule_account_disable_post_pw_expiration'")
 
+# Remediation is applicable only in certain platforms
+if rpm --quiet -q shadow-utils; then
+
+
 var_account_disable_post_pw_expiration="35"
 # Function to replace configuration setting in config file or add the configuration setting if
 # it does not exist.
@@ -82,3 +86,8 @@ function replace_or_append {
   fi
 }
 replace_or_append '/etc/default/useradd' '^INACTIVE' "$var_account_disable_post_pw_expiration" 'CCE-80954-1' '%s=%s'
+
+else
+    >&2 echo 'Remediation is not applicable, nothing was done'
+fi
+

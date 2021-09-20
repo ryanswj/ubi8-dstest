@@ -1,7 +1,15 @@
 #!/bin/sh
 set -e
 
-(>&2 echo "Remediating: 'xccdf_org.ssgproject.content_rule_disable_ctrlaltdel_burstaction'")
+(>&2 echo "Remediating: 'xccdf_org.ssgproject.content_rule_accounts_logon_fail_delay'")
+
+# Remediation is applicable only in certain platforms
+if rpm --quiet -q shadow-utils; then
+
+
+
+# Set variables
+var_accounts_fail_delay="4"
 # Function to replace configuration setting in config file or add the configuration setting if
 # it does not exist.
 #
@@ -79,4 +87,9 @@ function replace_or_append {
     printf '%s\n' "$formatted_output" >> "$config_file"
   fi
 }
-replace_or_append '/etc/systemd/system.conf' '^CtrlAltDelBurstAction=' 'none' 'CCE-80784-2' '%s=%s'
+replace_or_append '/etc/login.defs' '^FAIL_DELAY' "$var_accounts_fail_delay" 'CCE-84037-1' '%s %s'
+
+else
+    >&2 echo 'Remediation is not applicable, nothing was done'
+fi
+
