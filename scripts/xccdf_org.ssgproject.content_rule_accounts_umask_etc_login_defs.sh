@@ -1,7 +1,13 @@
 #!/bin/sh
 set -e
 
-(>&2 echo "Remediating: 'xccdf_org.ssgproject.content_rule_ensure_gpgcheck_local_packages'")
+(>&2 echo "Remediating: 'xccdf_org.ssgproject.content_rule_accounts_umask_etc_login_defs'")
+
+# Remediation is applicable only in certain platforms
+if rpm --quiet -q shadow-utils; then
+
+
+var_accounts_user_umask="077"
 # Function to replace configuration setting in config file or add the configuration setting if
 # it does not exist.
 #
@@ -79,4 +85,9 @@ function replace_or_append {
     printf '%s\n' "$formatted_output" >> "$config_file"
   fi
 }
-replace_or_append '/etc/yum.conf' '^localpkg_gpgcheck' '1' 'CCE-80791-7'
+replace_or_append '/etc/login.defs' '^UMASK' "$var_accounts_user_umask" 'CCE-82888-9' '%s %s'
+
+else
+    >&2 echo 'Remediation is not applicable, nothing was done'
+fi
+
