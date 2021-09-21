@@ -3,7 +3,13 @@ set -e
 
 (>&2 echo "Remediating: 'xccdf_org.ssgproject.content_rule_accounts_passwords_pam_faillock_deny'")
 
+# Remediation is applicable only in certain platforms
+if rpm --quiet -q pam; then
+
+
 var_accounts_passwords_pam_faillock_deny="3"
+
+
 
 AUTH_FILES=("/etc/pam.d/system-auth" "/etc/pam.d/password-auth")
 
@@ -43,3 +49,8 @@ do
         sed -E -i --follow-symlinks '/^\s*account\s*required\s*pam_unix.so/i account     required      pam_faillock.so' "$pam_file"
     fi
 done
+
+else
+    >&2 echo 'Remediation is not applicable, nothing was done'
+fi
+

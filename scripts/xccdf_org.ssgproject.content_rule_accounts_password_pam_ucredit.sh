@@ -3,6 +3,10 @@ set -e
 
 (>&2 echo "Remediating: 'xccdf_org.ssgproject.content_rule_accounts_password_pam_ucredit'")
 
+# Remediation is applicable only in certain platforms
+if rpm --quiet -q pam; then
+
+
 var_password_pam_ucredit="-1"
 # Function to replace configuration setting in config file or add the configuration setting if
 # it does not exist.
@@ -82,3 +86,8 @@ function replace_or_append {
   fi
 }
 replace_or_append '/etc/security/pwquality.conf' '^ucredit' $var_password_pam_ucredit 'CCE-80665-3' '%s = %s'
+
+else
+    >&2 echo 'Remediation is not applicable, nothing was done'
+fi
+

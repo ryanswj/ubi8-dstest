@@ -3,7 +3,11 @@ set -e
 
 (>&2 echo "Remediating: 'xccdf_org.ssgproject.content_rule_accounts_password_pam_difok'")
 
-var_password_pam_difok="4"
+# Remediation is applicable only in certain platforms
+if rpm --quiet -q pam; then
+
+
+var_password_pam_difok="8"
 # Function to replace configuration setting in config file or add the configuration setting if
 # it does not exist.
 #
@@ -82,3 +86,8 @@ function replace_or_append {
   fi
 }
 replace_or_append '/etc/security/pwquality.conf' '^difok' $var_password_pam_difok 'CCE-80654-7' '%s = %s'
+
+else
+    >&2 echo 'Remediation is not applicable, nothing was done'
+fi
+

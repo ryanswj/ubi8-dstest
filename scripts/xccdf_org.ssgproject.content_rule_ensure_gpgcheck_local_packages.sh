@@ -2,6 +2,10 @@
 set -e
 
 (>&2 echo "Remediating: 'xccdf_org.ssgproject.content_rule_ensure_gpgcheck_local_packages'")
+
+# Remediation is applicable only in certain platforms
+if rpm --quiet -q yum; then
+
 # Function to replace configuration setting in config file or add the configuration setting if
 # it does not exist.
 #
@@ -80,3 +84,8 @@ function replace_or_append {
   fi
 }
 replace_or_append '/etc/yum.conf' '^localpkg_gpgcheck' '1' 'CCE-80791-7'
+
+else
+    >&2 echo 'Remediation is not applicable, nothing was done'
+fi
+
