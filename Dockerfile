@@ -26,7 +26,7 @@ RUN echo Update packages and install DISA STIG fixes && \
     dnf repolist && \
     dnf update -y && \
     # install missing dependency for libpwquality
-    dnf install -y cracklib-dicts && \
+    dnf install -y cracklib-dicts nss && \
     echo "* hard maxlogins 10" > /etc/security/limits.d/maxlogins.conf && \
     # Do not use loops to iterate through shell scripts, this allows for scripts to fail
     # but the build to still be successful. Be explicit when executing scripts and ensure
@@ -96,6 +96,11 @@ RUN echo Update packages and install DISA STIG fixes && \
     trust list | head && \
     dnf clean all && \
     rm -rf /dsop-fix/ /var/cache/dnf/ /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
+
+COPY nssdb/ /etc/pki/nssdb/
+
+RUN chown -R root:root /etc/pki/nssdb && \
+    chmod 644 /etc/pki/nssdb/*
 
 ENV container oci
 ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
