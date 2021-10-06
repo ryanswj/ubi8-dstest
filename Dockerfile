@@ -97,9 +97,10 @@ RUN echo Update packages and install DISA STIG fixes && \
     dnf clean all && \
     rm -rf /dsop-fix/ /var/cache/dnf/ /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
 
-COPY nssdb/ /etc/pki/nssdb/
+COPY nssdb/pkcs11.txt /tmp/pkcs11.txt
 
-RUN chown -R root:root /etc/pki/nssdb && \
+RUN cat /tmp/pkcs11.txt >> /etc/pki/nssdb/pkcs11.txt && \
+    chown -R root:root /etc/pki/nssdb && \
     chmod 644 /etc/pki/nssdb/*
 
 ENV container oci
