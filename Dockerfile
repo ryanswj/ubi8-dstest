@@ -21,12 +21,12 @@ COPY banner/issue /etc/
 RUN echo Update packages and install DISA STIG fixes && \
     # Disable all repositories (to limit RHEL host repositories) and only use official UBI repositories
     sed -i "s/enabled=1/enabled=0/" /etc/dnf/plugins/subscription-manager.conf && \
-    chmod 644 /etc/issue /etc/yum.repos.d/ironbank.repo && \
+    chmod 644 /etc/issue /etc/yum.repos.d/ironbank.repo /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.7_DoD.pem && \
     rm -f /etc/yum.repos.d/ubi.repo && \
     dnf repolist && \
     dnf update -y && \
     # install missing dependency for libpwquality
-    dnf install -y cracklib-dicts && \
+    dnf install -y cracklib-dicts nss && \
     echo "* hard maxlogins 10" > /etc/security/limits.d/maxlogins.conf && \
     # Do not use loops to iterate through shell scripts, this allows for scripts to fail
     # but the build to still be successful. Be explicit when executing scripts and ensure
@@ -96,6 +96,13 @@ RUN echo Update packages and install DISA STIG fixes && \
     trust list | head && \
     dnf clean all && \
     rm -rf /dsop-fix/ /var/cache/dnf/ /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
+
+COPY nssdb/pkcs11.txt /tmp/pkcs11.txt
+
+RUN cat /tmp/pkcs11.txt >> /etc/pki/nssdb/pkcs11.txt && \
+    chown -R root:root /etc/pki/nssdb && \
+    chmod 644 /etc/pki/nssdb/* && \
+    rm -f /tmp/pkcs11.txt
 
 ENV container oci
 ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
