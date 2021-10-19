@@ -60,7 +60,8 @@ RUN echo Update packages and install DISA STIG fixes && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_accounts_umask_etc_login_defs.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_accounts_umask_etc_profile.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_banner_etc_issue.sh && \
-    /dsop-fix/xccdf_org.ssgproject.content_rule_configure_crypto_policy.sh && \
+    # rollback crypto policy to DEFAULT
+    #/dsop-fix/xccdf_org.ssgproject.content_rule_configure_crypto_policy.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_configure_kerberos_crypto_policy.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_configure_openssl_crypto_policy.sh && \
     # usbguard not available in ubi
@@ -96,13 +97,6 @@ RUN echo Update packages and install DISA STIG fixes && \
     trust list | head && \
     dnf clean all && \
     rm -rf /dsop-fix/ /var/cache/dnf/ /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
-
-COPY nssdb/pkcs11.txt /tmp/pkcs11.txt
-
-RUN cat /tmp/pkcs11.txt >> /etc/pki/nssdb/pkcs11.txt && \
-    chown -R root:root /etc/pki/nssdb && \
-    chmod 644 /etc/pki/nssdb/* && \
-    rm -f /tmp/pkcs11.txt
 
 ENV container oci
 ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
