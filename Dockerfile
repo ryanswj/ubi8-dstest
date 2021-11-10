@@ -21,6 +21,7 @@ COPY banner/issue /etc/
 RUN echo Update packages and install DISA STIG fixes && \
     # Disable all repositories (to limit RHEL host repositories) and only use official UBI repositories
     sed -i "s/enabled=1/enabled=0/" /etc/dnf/plugins/subscription-manager.conf && \
+    echo "exclude=filesystem-*" >> /etc/dnf/dnf.conf && \
     chmod 644 /etc/issue /etc/yum.repos.d/ironbank.repo /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.7_DoD.pem && \
     rm -f /etc/yum.repos.d/ubi.repo && \
     dnf repolist && \
