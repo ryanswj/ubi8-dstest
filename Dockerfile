@@ -3,7 +3,7 @@
 # implementation for doing ARG based FROM instructions require replacing
 # the FROM with an already existing image (i.e. one we've previously built).
 # This prevents us from retrieving the latest image from Red Hat.
-FROM registry.access.redhat.com/ubi8:8.4
+FROM registry.access.redhat.com/ubi8:8.5
 
 COPY scripts /dsop-fix/
 
@@ -24,7 +24,7 @@ RUN echo Update packages and install DISA STIG fixes && \
     # exclude upating the 'filesystem' package due to errors with rootless builds
     #     https://github.com/containers/buildah/issues/3309
     # exclude subscription-manager updates due to missing cloud-what dep in UBI repo
-    echo "exclude=filesystem-*,subscription-manager*,python3-subscription-manager-rhsm*,dnf-plugin-subscription-manager*,python3-syspurpose*" >> /etc/dnf/dnf.conf && \
+    echo "exclude=filesystem-*" >> /etc/dnf/dnf.conf && \
     chmod 644 /etc/issue /etc/yum.repos.d/ironbank.repo /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.7_DoD.pem && \
     rm -f /etc/yum.repos.d/ubi.repo && \
     dnf repolist && \
