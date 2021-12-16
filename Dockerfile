@@ -44,6 +44,7 @@ RUN echo Update packages and install DISA STIG fixes && \
     #/dsop-fix/xccdf_org.ssgproject.content_rule_accounts_password_all_shadowed_sha512.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_accounts_password_minlen_login_defs.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_accounts_password_pam_dcredit.sh && \
+    /dsop-fix/xccdf_org.ssgproject.content_rule_accounts_password_pam_dictcheck.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_accounts_password_pam_difok.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_accounts_password_pam_lcredit.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_accounts_password_pam_maxclassrepeat.sh && \
