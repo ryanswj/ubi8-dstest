@@ -7,7 +7,8 @@ FROM registry.access.redhat.com/ubi8:8.5
 
 COPY scripts /dsop-fix/
 
-COPY certs/Certificates_PKCS7_v5.7_DoD.pem /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.7_DoD.pem
+COPY certs/Certificates_PKCS7_v5.9_DoD.pem /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.9_DoD.pem
+COPY certs/Certificates_PKCS7_v5.12_WCF.pem /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.12_WCF.pem
 
 COPY ironbank.repo /etc/yum.repos.d/ironbank.repo
 
@@ -98,8 +99,6 @@ RUN echo Update packages and install DISA STIG fixes && \
     #/dsop-fix/xccdf_org.ssgproject.content_rule_sudoers_validate_passwd.sh && \
     update-ca-trust && \
     update-ca-trust force-enable && \
-    grep -c "BEGIN CERTIFICATE" /etc/pki/tls/certs/ca-bundle.crt && \
-    trust list | head && \
     dnf clean all && \
     rm -rf /dsop-fix/ /var/cache/dnf/ /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
 
