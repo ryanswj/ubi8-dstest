@@ -25,7 +25,6 @@ RUN echo Update packages and install DISA STIG fixes && \
     # exclude subscription-manager updates due to missing cloud-what dep in UBI repo
     echo "exclude=filesystem-*" >> /etc/dnf/dnf.conf && \
     chmod 644 /etc/issue /etc/pki/ca-trust/source/anchors/*.pem && \
-    rm -f /etc/yum.repos.d/ubi.repo && \
     dnf repolist && \
     dnf update -y && \
     # install missing dependency for libpwquality
