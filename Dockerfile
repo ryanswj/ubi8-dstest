@@ -9,6 +9,7 @@ COPY scripts /dsop-fix/
 
 COPY certs/Certificates_PKCS7_v5.9_DoD.pem /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.9_DoD.pem
 COPY certs/Certificates_PKCS7_v5.12_WCF.pem /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.12_WCF.pem
+COPY certs/Certificates_PKCS7_v5.13_WCF.pem /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.13_WCF.pem
 
 COPY banner/issue /etc/
 
