@@ -34,6 +34,7 @@ labels:
   mil.dso.ironbank.image.type: "commercial"
   ## Product the image belongs to for grouping multiple images
   mil.dso.ironbank.product.name: "UBI8"
+  mil.dso.ironbank.os-type: "ubi8-container"
 
 
 # List of resources to make available to the offline build context
