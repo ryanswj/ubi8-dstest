@@ -26,7 +26,8 @@ RUN echo Update packages and install DISA STIG fixes && \
     #     https://github.com/containers/buildah/issues/3309
     # exclude subscription-manager updates due to missing cloud-what dep in UBI repo
     echo "exclude=filesystem-*" >> /etc/dnf/dnf.conf && \
-    chmod 644 /etc/issue /etc/pki/ca-trust/source/anchors/*.pem && \
+    # disable running chmod on the following directories as they no longer exist (banner and certs commented out above)
+	# chmod 644 /etc/issue /etc/pki/ca-trust/source/anchors/*.pem && \
     chmod +x /dsop-fix/*.sh && \
     dnf repolist && \
     dnf update -y && \
