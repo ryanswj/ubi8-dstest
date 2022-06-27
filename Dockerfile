@@ -7,8 +7,9 @@ FROM registry.access.redhat.com/ubi8:8.6
 
 COPY scripts /dsop-fix/
 
-COPY certs/Certificates_PKCS7_v5.9_DoD.pem /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.9_DoD.pem
-COPY certs/Certificates_PKCS7_v5.13_WCF.pem /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.13_WCF.pem
+# let's not copy DoD certs as we don't need them to be installed
+# COPY certs/Certificates_PKCS7_v5.9_DoD.pem /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.9_DoD.pem
+# COPY certs/Certificates_PKCS7_v5.13_WCF.pem /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.13_WCF.pem
 
 COPY banner/issue /etc/
 
@@ -96,8 +97,9 @@ RUN echo Update packages and install DISA STIG fixes && \
     # sudo not required by default in container
     #/dsop-fix/xccdf_org.ssgproject.content_rule_sudo_require_reauthentication.sh && \
     #/dsop-fix/xccdf_org.ssgproject.content_rule_sudoers_validate_passwd.sh && \
-    update-ca-trust && \
-    update-ca-trust force-enable && \
+    # because we didn't add DoD certs, we don't need to update-ca-trust
+	# update-ca-trust && \
+    # update-ca-trust force-enable && \
     dnf clean all && \
     rm -rf /dsop-fix/ /var/cache/dnf/ /var/tmp/* /tmp/* /var/tmp/.???* /tmp/.???*
 
