@@ -11,7 +11,8 @@ COPY scripts /dsop-fix/
 # COPY certs/Certificates_PKCS7_v5.9_DoD.pem /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.9_DoD.pem
 # COPY certs/Certificates_PKCS7_v5.13_WCF.pem /etc/pki/ca-trust/source/anchors/Certificates_PKCS7_v5.13_WCF.pem
 
-COPY banner/issue /etc/
+# Banner not necessary for our use case
+# COPY banner/issue /etc/
 
 # Be careful when adding packages because this will ultimately be built on a licensed RHEL host,
 # which enables full RHEL repositories and could allow for installation of packages that would
@@ -65,7 +66,8 @@ RUN echo Update packages and install DISA STIG fixes && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_accounts_umask_etc_csh_cshrc.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_accounts_umask_etc_login_defs.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_accounts_umask_etc_profile.sh && \
-    /dsop-fix/xccdf_org.ssgproject.content_rule_banner_etc_issue.sh && \
+	# Didn't import banner, so no need to check for it
+    # /dsop-fix/xccdf_org.ssgproject.content_rule_banner_etc_issue.sh && \
     # rollback crypto policy to DEFAULT
     #/dsop-fix/xccdf_org.ssgproject.content_rule_configure_crypto_policy.sh && \
     /dsop-fix/xccdf_org.ssgproject.content_rule_configure_kerberos_crypto_policy.sh && \
